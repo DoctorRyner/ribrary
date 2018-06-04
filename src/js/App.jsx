@@ -29,6 +29,7 @@ class ReduxApp extends React.Component {
 			<div>
 				<Header isUserBarActive={this.props.isUserBarActive} switchUserBar={this.props.switchUserBar} />
 				<div id='content'>
+					<p>Test</p>
 					{this.props.isUserBarActive && renderBar}
 				</div>
 			</div>
