@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json([
-	{ id: 1, username: 'testUser1' },
-	{ id: 2, username: 'testu2' }
-  ])
-});
+// router.get('/', function(req, res, next) {
+// 	res.json([
+// 		{ id: 1, username: 'testUser1' },
+// 		{ id: 2, username: 'testu2' }
+// 	])
+// });
 
 module.exports = router;

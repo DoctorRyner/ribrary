@@ -11,11 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "gulp-connect": "^5.5.0",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-localstorage": "^1.0.0",
     "react-pdf": "^3.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "thunk": "0.0.1",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

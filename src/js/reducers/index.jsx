@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux'
 import uuidv1 from 'uuid'
 
-const usersDataInit = {
-	"users": [
-		{ "id": 1, "username": "testUser", "password": "123" },
-		{ "id": 2, "username": "testAdmin", "password": "111" }
-	]
+const userInfoInit = {
+	firstname: 'Имя',
+	lastname: 'Фамилия',
+	username: 'Имя пользователя',
+	usercode: 1111,
 }
 
-const usersData = (state = usersDataInit, action) => {
+const userInfo = (state = userInfoInit, action) => {
 	switch (action.type) {
+		case 'SET_USERNAME': return { ...state, username: action.payload }
+		case 'SET_USERCODE': return { ...state, usercode: action.payload }
 		default: return state
 	}
 }
@@ -18,11 +20,17 @@ const userBarInit = {
 	style: {
 		
 	},
+	usernameInput: 'Логин',
+	passwordInput: '',
 	mode: 'login', // modes: login, info
 }
 
 const userBar = (state = userBarInit, action) => {
 	switch (action.type) {
+		case 'CHANGE_USERNAME_INPUT': return { ...state, usernameInput: action.payload }
+		case 'CHANGE_PASSWORD_INPUT': return { ...state, passwordInput: action.payload }
+		case 'LOGIN': return { ...state, mode: 'info' }
+		case 'EXIT': return { ...state, mode: 'login' }
 		default: return state
 	}
 }
@@ -36,4 +44,4 @@ const prefs = (state = prefsInit, action) => {
 	}
 }
 
-export default combineReducers({ prefs, userBar, usersData })
+export default combineReducers({ prefs, userBar, userInfo })

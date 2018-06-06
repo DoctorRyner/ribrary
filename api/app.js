@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+let MongoClient = require('mongodb').MongoClient
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+var app = express()
+let db
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,5 +46,16 @@ const port = 3001
 app.listen(port, function () {
   console.log('Example app listening on port ' + port + '!');
 });
+// db
+// MongoClient.connect('mongodb://localhost:27017/sample', (err, database) => {
+// 	if(err) return console.log(err)
+// 	db = database
+
+// 	const port = 3001
+
+// 	app.listen(port, function () {
+// 	console.log('Example app listening on port ' + port + '!');
+// 	});
+// })
 
 module.exports = app;
