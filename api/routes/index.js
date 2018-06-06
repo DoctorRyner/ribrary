@@ -1,4 +1,5 @@
 var express = require('express');
+const fileUpload = require('express-fileupload')
 var router = express.Router();
 const mongodb = require('mongodb')
 const mongoose = require('mongoose')
@@ -8,6 +9,20 @@ const uuidv1 = require('uuid')
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express API' });
 });
+
+router.post('/upload', (req, res) => {
+	if(req.files) {
+		var file = req.files.filename
+		var filename = file.name
+		console.log(file)
+		file.mv('./public/pdf/' + filename, err => {
+			if(err) {
+				console.log(err)
+				res.send('error occured')
+			} else res.send('Done!')
+		})
+	}
+})
 
 router.post('/newUser', function(req, res) {
 	console.log('RECEIVED')

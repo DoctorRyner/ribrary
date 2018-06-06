@@ -12,6 +12,18 @@ store.subscribe(() => console.log(store.getState()))
 console.log(store.getState())
 
 class ReduxApp extends React.Component {
+	componentDidMount() {
+		// localStorage.setItem('isLoged', false)
+		const isLoged = localStorage.getItem('isLoged')
+		if(isLoged == 'false') {
+			alert(isLoged + ' = false, поэтому не заходим')
+			return
+		} else if(isLoged == 'true'){
+			alert(isLoged + ' = true, поэтому входим')
+			this.props.login(localStorage.getItem('login'), localStorage.getItem('password'))
+		}
+	}
+
 	login = () => {
 		this.props.login('admin', 'admin')
 		fetch('api/thelist')
@@ -31,6 +43,9 @@ class ReduxApp extends React.Component {
 				exit={this.props.exit}
 				changeUsernameInput={this.props.changeUsernameInput}
 				changePasswordInput={this.props.changePasswordInput}
+				changeRegUsernameInput={this.props.changeRegUsernameInput}
+				changeRegPasswordInput={this.props.changeRegPasswordInput}
+				changeUsercodeInput={this.props.changeUsercodeInput}
 			/>
 
 		return(
@@ -58,6 +73,9 @@ const App = connect(
 		exit: () => dispatch({ type: 'EXIT' }),
 		changeUsernameInput: username => dispatch({ type: 'CHANGE_USERNAME_INPUT', payload: username }),
 		changePasswordInput: password => dispatch({ type: 'CHANGE_PASSWORD_INPUT', payload: password }),
+		changeRegUsernameInput: username => dispatch({ type: 'CHANGE_REG_USERNAME_INPUT', payload: username }),
+		changeRegPasswordInput: password => dispatch({ type: 'CHANGE_REG_PASSWORD_INPUT', payload: password }),
+		changeUsercodeInput: usercode => dispatch({ type: 'CHANGE_USERCODE_INPUT', payload: usercode }),
 		setUsername: username => dispatch({ type: 'SET_USERNAME', payload: username }),
 		setUsercode: usercode => dispatch({ type: 'SET_USERCODE', payload: usercode }),
 	})
