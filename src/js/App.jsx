@@ -12,24 +12,52 @@ store.subscribe(() => console.log(store.getState()))
 console.log(store.getState())
 
 class ReduxApp extends React.Component {
+	login = (username, password) => {
+		let gottenData
+		let isValid = false
+		let usercode
+		// props.login('admin', 'admin')
+		fetch('api/users')
+			.then(res => res.json())
+			.then(data => gottenData = data)
+			.then(() => {
+				for(let data of gottenData) {
+					if(data.username != username || data.password != password) continue
+					usercode = data.usercode
+					isValid = true;
+					break;
+				}
+			})
+			.then(() => {
+				if(!isValid) {
+					// alert('Неправильный логин или пароль')
+					return
+				}
+
+				// alert('Добро пожаловать, ' + username)
+				this.props.setUsername(username)
+				this.props.setUsercode(usercode)
+				this.props.login(username, password)
+				this.props.changeUsernameInput('Логин')
+				this.props.changePasswordInput('')
+			})
+			.catch(err => console.log(err))
+	}
+
 	componentDidMount() {
 		// localStorage.setItem('isLoged', false)
 		const isLoged = localStorage.getItem('isLoged')
 		if(isLoged == 'false') {
-			alert(isLoged + ' = false, поэтому не заходим')
+			// alert(isLoged + ' = false, поэтому не заходим')
 			return
 		} else if(isLoged == 'true'){
-			alert(isLoged + ' = true, поэтому входим')
-			this.props.login(localStorage.getItem('login'), localStorage.getItem('password'))
+			const username = localStorage.getItem('login')
+			const password = localStorage.getItem('password')
+			const usercode = localStorage.getItem('usercode')
+			// alert(isLoged + ' = true, поэтому входим, имя: ' + username + ', а пароль: ' + password)
+			this.props.setUsername(username)
+			this.login(username, password)
 		}
-	}
-
-	login = () => {
-		this.props.login('admin', 'admin')
-		fetch('api/thelist')
-			.then(res => res.json())
-			.then(data => console.log(data))
-			.catch(error => console.log('error'))
 	}
 
 	render() {
@@ -87,3 +115,6 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('app')
 )
+
+
+

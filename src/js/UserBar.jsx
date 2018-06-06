@@ -25,10 +25,11 @@ const UserBar = props => {
 					return
 				}
 
-				localStorage.setItem('isLoged', true)
+				localStorage.setItem('isLoged', 'true')
 				localStorage.setItem('login', username)
 				localStorage.setItem('password', password)
-				alert('Добро пожаловать, ' + username)
+				localStorage.setItem('usercode', usercode)
+				// alert('Добро пожаловать, ' + username)
 				props.setUsername(username)
 				props.setUsercode(usercode)
 				props.login(username, password)
@@ -101,27 +102,6 @@ const UserBar = props => {
 				alert('Регистрация прошла успешно!')
 			})
 			.catch(err => console.log(err))
-
-		// const data = {
-		// 	username,
-		// 	password,
-		// 	usercode
-		// }
-
-		// const request = new Request('api/newUser', {
-		// 	method: 'POST',
-		// 	headers: { 'Content-type': 'application/json' },
-		// 	body: JSON.stringify(data),
-		// })
-
-		// fetch(request)
-		// 	.then((err) => {
-		// 		if(err) {
-		// 			alert('Ошибка при регистрации!')
-		// 			console.log(err)
-		// 		} else alert('Регистрация прошла успешно!')
-		// 	})
-
 	}
 		
 	const changeUsernameHandle = e => props.changeUsernameInput(e.target.value)
@@ -152,8 +132,6 @@ const UserBar = props => {
 
 	const fileInput = props.userInfo.usercode == 14228 &&
 		<div className='user-name'>
-			{/* <input type='file' name='bookFile' />
-			<input onClick={upload} type='submit' /> */}
 			<form method='post' encType='multipart/form-data' action='/api/upload'>
 				<input type='file' name='filename'/>
 				<input type='submit' value='upload'/>
@@ -189,9 +167,9 @@ const UserBar = props => {
 			<div className='user-name'>
 				<label className='user-name-name'>Имя: {props.userInfo.username}</label>
 			</div>
-			<div className='user-name'>
-				<label className='bookmarks'>Открыть Закладки</label>
-			</div>
+			{/* <div className='user-name'>
+				<label className='bookmarks'>Открыть закладки</label>
+			</div> */}
 			<div className='user-name'>
 				<label className='bookmarks'>Статус: {userPower}</label>
 			</div>
@@ -199,6 +177,7 @@ const UserBar = props => {
 				localStorage.setItem('isLoged', false)
 				localStorage.setItem('login', undefined)
 				localStorage.setItem('password', undefined)
+				localStorage.setItem('usercode', undefined)
 				props.exit()
 			}}>
 				<label className='bookmarks'>Выйти из профиля</label>

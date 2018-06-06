@@ -29,9 +29,9 @@ router.post('/newUser', function(req, res) {
 	// console.log(req.body)
 	let url = 'mongodb://localhost:27017/ribrary'
 	mongoose.connect(url, (err, db) => {
-		if(err) console.log('Unable to connect to the server', err)
+		if(err) console.log('Ошибка подключения к базе данных', err)
 		else {
-			console.log('Connection Established')
+			console.log('Подключение установленно')
 			let collection = db.collection('users')
 
 			const newUser = {
@@ -43,7 +43,7 @@ router.post('/newUser', function(req, res) {
 
 			collection.insert([newUser], (err, result) => {
 				if(err) console.log(err)
-				else console.log('added new user')
+				else console.log('Новый пользователь был добавлен')
 			})
 
 			db.close()
@@ -54,45 +54,20 @@ router.post('/newUser', function(req, res) {
 router.get('/users', function(req, res) {
 	let url = 'mongodb://localhost:27017/ribrary'
 	mongoose.connect(url, (err, db) => {
-		if(err) console.log('Unable to connect to the server', err)
+		if(err) console.log('Ошибка подключения к базе данных', err)
 		else {
-			console.log('Connection Established')
+			console.log('Подключение установлено')
 			let collection = db.collection('users')
 
 			collection.find({}).toArray((err, result) => {
 				if(err) res.send(err)
 				else if(result.length) res.send(result)
-				else res.send('No documents found')
+				else res.send('Документ с пользователями не был найден')
 
 				db.close()
 			})
 		}
 	})
-	// var MongoClient = mongodb.MongoClient
-
-	// var url = 'mongodb://localhost:27017/sample'
-	// MongoClient.connect(url, function(err, db) {
-		// if(err) {
-		// 	console.log('Unable to connect to the server', err)
-		// } else {
-		// 	console.log('Connection Established')
-		// 	console.log(db.model)
-		// 	return 0
-		// 	// var collection = db.collection('students')
-
-		// 	collection.find({}).toArray(function(err, result) {
-		// 		if(err) {
-		// 			res.send(err)
-		// 		} else if(result.length) {
-		// 			res.send('studentList')
-		// 		} else {
-		// 			res.send('No documents found')
-		// 		}
-
-		// 		db.close()
-		// 	})
-		// }
-	// })
 })
 
 module.exports = router;
