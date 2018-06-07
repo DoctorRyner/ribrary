@@ -111,18 +111,61 @@ const UserBar = props => {
 	const changeRegPasswordHandle = e => props.changeRegPasswordInput(e.target.value)
 	const changeUsercodeHandle = e => props.changeUsercodeInput(e.target.value)
 
-	let input
-	let submit
+	let bookName
+	let fileField
 	const upload = () => {
-		let data = new FormData()
-		// data.append('files', input.file)
-		console.log(input)
-		return
+		if(bookName.value.length < 4) {
+			alert('Имя книги должно содержать не менее 4-ех символов!')
+			return
+		}
+
+		const type = fileField.files[0].type
+		const ext = fileField.files[0].name.split('.').pop()
 		
-		fetch('api/upload', {
-			method: 'POST',
-			body: data
-		}).catch(err => console.log('catch error'))
+		if(type != 'application/pdf') {
+			alert('Неподдерживаемый формат книг! Список поддерживаемых фарматов: pdf')
+			return
+		}
+
+		let formData = new FormData();
+
+		const bookNameFull = bookName.value + '.' + ext
+
+		formData.append('bookName', bookNameFull)
+		formData.append('book', fileField.files[0]);
+
+		// получаем список книг
+		let gottenData
+		let isValid = true
+		
+		fetch('api/getBooks')
+			.then(res => res.json())
+			.then(data => gottenData = data)
+			.then(() => {
+				for(let data of gottenData) {
+					if(data.bookname != bookNameFull) continue
+					isValid = false;
+					break;
+				}
+			})
+			.then(() => {
+				if(!isValid) {
+					alert('Такая книга уже есть!')
+					return
+				}
+		
+				fetch('api/upload', {
+					method: 'POST',
+					body: formData
+				})
+					.then(res => res.json())
+					.catch(err => console.error('Error:', err))
+					.then(res => {
+						alert('Книга "' + bookName.value + '" успешно добавлена')
+						console.log('Success:', res)
+					});
+			})
+			.catch(err => console.log(err))
 	}
 
 	// const fileInput = props.userInfo.usercode == 14228 &&
@@ -131,11 +174,16 @@ const UserBar = props => {
 	// 	</div>
 
 	const fileInput = props.userInfo.usercode == 14228 &&
-		<div className='user-name'>
-			<form method='post' encType='multipart/form-data' action='/api/upload'>
-				<input type='file' name='filename'/>
-				<input type='submit' value='upload'/>
-			</form>
+		<div className='book-filed'>
+			<div className='book-title' onClick={upload} ><b><p>Добавить книгу</p></b></div>
+			<input
+				ref={bookNameField => bookName = bookNameField}
+				className='book-input'
+				defaultValue='Имя книги'
+				type="text
+			"/>
+			<input ref={file => fileField = file} type='file' name='book'/>
+			{/* <input onClick={upload} type='submit' value='upload'/> */}
 		</div>
 
 
@@ -173,6 +221,7 @@ const UserBar = props => {
 			<div className='user-name'>
 				<label className='bookmarks'>Статус: {userPower}</label>
 			</div>
+			{fileInput}
 			<div className='user-name' onClick={() => {
 				localStorage.setItem('isLoged', false)
 				localStorage.setItem('login', undefined)
@@ -182,7 +231,6 @@ const UserBar = props => {
 			}}>
 				<label className='bookmarks'>Выйти из профиля</label>
 			</div>
-			{fileInput}
 		</div>
 	)
 

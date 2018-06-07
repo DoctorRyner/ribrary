@@ -1,6 +1,15 @@
 import { combineReducers } from 'redux'
 import uuidv1 from 'uuid'
 
+const BooksListInit = []
+
+const BooksList = (state = BooksListInit, action) => {
+	switch (action.type) {
+
+		default: return state
+	}
+}
+
 const userInfoInit = {
 	firstname: 'Имя',
 	lastname: 'Фамилия',
@@ -41,13 +50,14 @@ const userBar = (state = userBarInit, action) => {
 	}
 }
 
-const prefsInit = { isUserBarActive: false, isSearchBarActive: false }
+const prefsInit = { isUserBarActive: false, isBooksPanelActive: false }
 
 const prefs = (state = prefsInit, action) => {
 	switch (action.type) {
-		case 'SWITCH_USER_BAR': return { ...state, isUserBarActive: !action.payload }
+		case 'SWITCH_USER_BAR': return { ...state, isUserBarActive: !state.isUserBarActive }
+		case 'SWITCH_BOOKS_PANEL': return { ...state, isBooksPanelActive: !state.isBooksPanelActive }
 		default: return state
 	}
 }
 
-export default combineReducers({ prefs, userBar, userInfo })
+export default combineReducers({ prefs, userBar, userInfo, BooksList })

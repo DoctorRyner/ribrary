@@ -6,12 +6,15 @@ import reducer from './reducers/index.jsx'
 
 import Header from './Header.jsx'
 import UserBar from './UserBar.jsx';
+import BooksPanel from './BooksPanel.jsx'
 
 const store = createStore(reducer)
 store.subscribe(() => console.log(store.getState()))
 console.log(store.getState())
 
 class ReduxApp extends React.Component {
+	state = { width: this.props.width };
+
 	login = (username, password) => {
 		let gottenData
 		let isValid = false
@@ -45,6 +48,9 @@ class ReduxApp extends React.Component {
 	}
 
 	componentDidMount() {
+		window.addEventListener('resize', () => this.setState({ width: window.innerWidth} ));
+		this.setState({ width: window.innerWidth})
+
 		// localStorage.setItem('isLoged', false)
 		const isLoged = localStorage.getItem('isLoged')
 		if(isLoged == 'false') {
@@ -61,6 +67,11 @@ class ReduxApp extends React.Component {
 	}
 
 	render() {
+		const renderBooksPanel =
+			<BooksPanel
+				width={this.state.width}
+			/>
+
 		const renderBar =
 			<UserBar
 				userBar={this.props.userBar}
@@ -78,8 +89,13 @@ class ReduxApp extends React.Component {
 
 		return(
 			<div>
-				<Header isUserBarActive={this.props.isUserBarActive} switchUserBar={this.props.switchUserBar} />
+				<Header
+					// isUserBarActive={this.props.isUserBarActive}
+					switchUserBar={this.props.switchUserBar}
+					switchBooksPanel={this.props.switchBooksPanel}
+				/>
 				<div id='content'>
+					{this.props.isBooksPanelActive && renderBooksPanel}
 					{this.props.isUserBarActive && renderBar}
 				</div>
 			</div>
@@ -90,13 +106,14 @@ class ReduxApp extends React.Component {
 const App = connect(
 	state => ({
 		isUserBarActive: state.prefs.isUserBarActive,
+		isBooksPanelActive: state.prefs.isBooksPanelActive,
 		userBar: state.userBar,
 		userInfo: state.userInfo,
 	}),
 	dispatch => ({
 		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
 		// inc: id => { dispatch({ type: 'INC', payload: id }) },
-		switchUserBar: status => dispatch({ type: 'SWITCH_USER_BAR', payload: status }),
+		switchUserBar: () => dispatch({ type: 'SWITCH_USER_BAR' }),
 		login: (username, password) => dispatch({ type: 'LOGIN', payload: { username, password } }),
 		exit: () => dispatch({ type: 'EXIT' }),
 		changeUsernameInput: username => dispatch({ type: 'CHANGE_USERNAME_INPUT', payload: username }),
@@ -106,6 +123,7 @@ const App = connect(
 		changeUsercodeInput: usercode => dispatch({ type: 'CHANGE_USERCODE_INPUT', payload: usercode }),
 		setUsername: username => dispatch({ type: 'SET_USERNAME', payload: username }),
 		setUsercode: usercode => dispatch({ type: 'SET_USERCODE', payload: usercode }),
+		switchBooksPanel: () => dispatch({ type: 'SWITCH_BOOKS_PANEL' })
 	})
 ) (ReduxApp)
 

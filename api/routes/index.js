@@ -12,14 +12,39 @@ router.get('/', function(req, res, next) {
 
 router.post('/upload', (req, res) => {
 	if(req.files) {
-		var file = req.files.filename
-		var filename = file.name
-		console.log(file)
-		file.mv('./public/pdf/' + filename, err => {
+		var file = req.files.book
+		var filename = req.body.bookName
+		file.mv('./public/books/' + filename, err => {
 			if(err) {
 				console.log(err)
 				res.send('error occured')
-			} else res.send('Done!')
+			} else {
+				const url = 'mongodb://localhost:27017/ribrary'
+				const bookname = req.body.bookName
+				const category = 'Тестовая категория'
+
+				mongoose.connect(url, (err, db) => {
+					if(err) console.log('Ошибка подключения к базе данных', err)
+					else {
+						console.log('Подключение установленно')
+						let collection = db.collection('books')
+
+						const newUser = {
+							id: uuidv1(),
+							bookname,
+							category
+						}
+
+						collection.insert([newUser], (err, result) => {
+							if(err) console.log(err)
+							else console.log('Новый книга была добавлен')
+						})
+
+						db.close()
+					}
+				})
+				res.send('Done!')
+			}
 		})
 	}
 })
@@ -51,8 +76,27 @@ router.post('/newUser', function(req, res) {
 	})
 })
 
+router.get('/getBooks', function(req, res) {
+	const url = 'mongodb://localhost:27017/ribrary'
+	mongoose.connect(url, (err, db) => {
+		if(err) console.log('Ошибка подключения к базе данных', err)
+		else {
+			console.log('Подключение установлено')
+			let collection = db.collection('books')
+
+			collection.find({}).toArray((err, result) => {
+				if(err) res.send(err)
+				else if(result.length) res.send(result)
+				else res.send('Документ с книгами не был найден')
+
+				db.close()
+			})
+		}
+	})
+})
+
 router.get('/users', function(req, res) {
-	let url = 'mongodb://localhost:27017/ribrary'
+	const url = 'mongodb://localhost:27017/ribrary'
 	mongoose.connect(url, (err, db) => {
 		if(err) console.log('Ошибка подключения к базе данных', err)
 		else {
