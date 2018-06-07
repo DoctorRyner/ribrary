@@ -1,4 +1,5 @@
-pdf
+books/*
+!books/*.lib
 Makefile
 build
 # Logs

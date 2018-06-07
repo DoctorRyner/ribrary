@@ -7,6 +7,7 @@ import reducer from './reducers/index.jsx'
 import Header from './Header.jsx'
 import UserBar from './UserBar.jsx';
 import BooksPanel from './BooksPanel.jsx'
+import Book from './Book.jsx'
 
 const store = createStore(reducer)
 store.subscribe(() => console.log(store.getState()))
@@ -70,6 +71,7 @@ class ReduxApp extends React.Component {
 		const renderBooksPanel =
 			<BooksPanel
 				width={this.state.width}
+				books={this.props.books}
 			/>
 
 		const renderBar =
@@ -90,7 +92,7 @@ class ReduxApp extends React.Component {
 		return(
 			<div>
 				<Header
-					// isUserBarActive={this.props.isUserBarActive}
+					setBooks={this.props.setBooks}
 					switchUserBar={this.props.switchUserBar}
 					switchBooksPanel={this.props.switchBooksPanel}
 				/>
@@ -109,6 +111,7 @@ const App = connect(
 		isBooksPanelActive: state.prefs.isBooksPanelActive,
 		userBar: state.userBar,
 		userInfo: state.userInfo,
+		books: state.booksList
 	}),
 	dispatch => ({
 		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
@@ -123,7 +126,8 @@ const App = connect(
 		changeUsercodeInput: usercode => dispatch({ type: 'CHANGE_USERCODE_INPUT', payload: usercode }),
 		setUsername: username => dispatch({ type: 'SET_USERNAME', payload: username }),
 		setUsercode: usercode => dispatch({ type: 'SET_USERCODE', payload: usercode }),
-		switchBooksPanel: () => dispatch({ type: 'SWITCH_BOOKS_PANEL' })
+		switchBooksPanel: () => dispatch({ type: 'SWITCH_BOOKS_PANEL' }),
+		setBooks: books => dispatch({ type: 'SET_BOOKS', payload: books })
 	})
 ) (ReduxApp)
 

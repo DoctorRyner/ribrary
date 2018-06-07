@@ -13,14 +13,15 @@ router.get('/', function(req, res, next) {
 router.post('/upload', (req, res) => {
 	if(req.files) {
 		var file = req.files.book
-		var filename = req.body.bookName
+		var filename = encodeURIComponent(req.body.bookName.trim())
+		// encodeURIComponent(sParameter.trim())
 		file.mv('./public/books/' + filename, err => {
 			if(err) {
 				console.log(err)
 				res.send('error occured')
 			} else {
 				const url = 'mongodb://localhost:27017/ribrary'
-				const bookname = req.body.bookName
+				const bookname = encodeURIComponent(req.body.bookName.trim())
 				const category = 'Тестовая категория'
 
 				mongoose.connect(url, (err, db) => {

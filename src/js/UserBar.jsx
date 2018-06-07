@@ -161,7 +161,7 @@ const UserBar = props => {
 					.then(res => res.json())
 					.catch(err => console.error('Error:', err))
 					.then(res => {
-						alert('Книга "' + bookName.value + '" успешно добавлена')
+						alert('Книга успешно добавлена')
 						console.log('Success:', res)
 					});
 			})

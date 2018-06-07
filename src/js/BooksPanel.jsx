@@ -1,4 +1,5 @@
 import React from 'react'
+import uuidv1 from 'uuid'
 
 import Book from './Book.jsx'
 
@@ -12,7 +13,9 @@ const BooksPanel = props => {
 	}
 
 	return(
-		<div style={style} className='BooksPanel'></div>
+		<div style={style} className='BooksPanel'>
+			{props.books.map(book => <Book bookname={book.bookname} category={book.category} id={book.id} key={uuidv1()} />)}
+		</div>
 	)
 }
 

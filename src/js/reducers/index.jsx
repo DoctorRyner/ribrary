@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import uuidv1 from 'uuid'
 
-const BooksListInit = []
+const booksListInit = []
 
-const BooksList = (state = BooksListInit, action) => {
+const booksList = (state = booksListInit, action) => {
 	switch (action.type) {
-
+		case 'SET_BOOKS': return action.payload
 		default: return state
 	}
 }
@@ -60,4 +60,4 @@ const prefs = (state = prefsInit, action) => {
 	}
 }
 
-export default combineReducers({ prefs, userBar, userInfo, BooksList })
+export default combineReducers({ prefs, userBar, userInfo, booksList })
