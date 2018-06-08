@@ -143,7 +143,8 @@ const UserBar = props => {
 			.then(data => gottenData = data)
 			.then(() => {
 				for(let data of gottenData) {
-					if(data.bookname != bookNameFull) continue
+					if(data.id == undefined) continue
+					if(data.bookname.split('_').join(' ') != bookNameFull) continue
 					isValid = false;
 					break;
 				}
