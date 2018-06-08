@@ -13,7 +13,6 @@ const Book = props => {
 			.then(data => books = data)
 			.then(() => {
 				books = books.filter(book => book.id != undefined)
-				props.setUsercode(1111)
 				props.setBooks(books.map(book => book))
 			})
 			.catch(err => console.log(err))
