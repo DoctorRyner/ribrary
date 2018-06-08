@@ -41,7 +41,7 @@ const BooksPanel = props => {
 			<div className='searchBooks'>
 				<input ref={searchNameField =>  searchName = searchNameField} defaultValue='По имени книги' type="text"/>
 				<input ref={searchCategoryField =>  searchCategory = searchCategoryField} defaultValue='По категориям' type="text"/>
-				<button onClick={search}>Поиск!</button>
+				<button onClick={search}>Нажмите для поиска!</button>
 			</div>
 			{renderBooks}
 		</div>
