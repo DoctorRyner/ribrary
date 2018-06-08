@@ -43,9 +43,7 @@ router.post('/upload', (req, res) => {
 
 						if(db !== undefined) db.close()
 					}
-					if(db !== undefined) db.close()
 				})
-				if(db !== undefined) db.close()
 				res.send('Done!')
 			}
 		})
