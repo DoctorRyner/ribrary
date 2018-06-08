@@ -22,7 +22,7 @@ router.post('/upload', (req, res) => {
 			} else {
 				const url = 'mongodb://localhost:27017/ribrary'
 				const bookname = req.body.bookName.split(' ').join('_')
-				const category = 'Тестовая категория'
+				const category = req.body.categoryName
 
 				mongoose.connect(url, (err, db) => {
 					if(err) console.log('Ошибка подключения к базе данных', err)
@@ -41,7 +41,7 @@ router.post('/upload', (req, res) => {
 							else console.log('Новый книга была добавлен')
 						})
 
-						db.close()
+						if(db != undefined) db.close()
 					}
 				})
 				res.send('Done!')
@@ -72,7 +72,7 @@ router.post('/newUser', function(req, res) {
 				else console.log('Новый пользователь был добавлен')
 			})
 
-			db.close()
+			if(db != undefined) db.close()
 		}
 	})
 })
@@ -92,7 +92,7 @@ router.post('/removeBook', function(req, res) {
 				else console.log('Книга удалена!')
 			})
 			res.send('success')
-			db.close()
+			if(db != undefined) db.close()
 		}
 	})
 })
@@ -109,8 +109,8 @@ router.get('/getBooks', function(req, res) {
 				if(err) res.send(err)
 				else if(result.length) res.send(result)
 				else res.send('Документ с книгами не был найден')
-
-				db.close()
+				
+				if(db != undefined) db.close()
 			})
 		}
 	})
@@ -129,7 +129,7 @@ router.get('/users', function(req, res) {
 				else if(result.length) res.send(result)
 				else res.send('Документ с пользователями не был найден')
 
-				db.close()
+				if(db != undefined) db.close()
 			})
 		}
 	})

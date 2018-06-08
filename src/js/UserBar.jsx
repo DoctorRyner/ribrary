@@ -125,6 +125,7 @@ const UserBar = props => {
 	}
 
 	let bookName
+	let categoryName
 	let fileField
 	const upload = () => {
 		props.switchUserBar()
@@ -133,8 +134,8 @@ const UserBar = props => {
 			alert('Книга все еще загружается!' + props.isReq)
 			return
 		} else props.switchReq()
-		if(bookName.value.length < 4) {
-			alert('Имя книги должно содержать не менее 4-ех символов!')
+		if(bookName.value.length < 4 || categoryName.value.length < 4) {
+			alert('Имя книги или категории должно содержать не менее 4-ех символов!')
 			props.switchUserBar()
 			return
 		} else if(!fileField.files[0]) {
@@ -148,6 +149,7 @@ const UserBar = props => {
 		
 		if(type != 'application/pdf') {
 			alert('Неподдерживаемый формат книг! Список поддерживаемых фарматов: pdf')
+			props.switchUserBar()
 			return
 		}
 
@@ -156,6 +158,7 @@ const UserBar = props => {
 		const bookNameFull = bookName.value + '.' + ext
 
 		formData.append('bookName', bookNameFull)
+		formData.append('categoryName', categoryName.value)
 		formData.append('book', fileField.files[0]);
 
 		// получаем список книг
@@ -213,7 +216,13 @@ const UserBar = props => {
 				defaultValue='Имя книги'
 				type="text
 			"/>
-			<input ref={file => fileField = file} type='file' name='book'/>
+			<input
+				ref={categoryNameField => categoryName = categoryNameField}
+				className='book-input'
+				defaultValue='Имя категории'
+				type="text
+			"/>
+			<input className='book-file' ref={file => fileField = file} type='file' name='book'/>
 			{/* <input onClick={upload} type='submit' value='upload'/> */}
 		</div>
 

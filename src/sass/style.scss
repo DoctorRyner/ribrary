@@ -281,13 +281,15 @@ header {
 .UserBar > .book-filed {
 	background: rgba(171, 167, 255, 0.9);
 	width: 97%;
-	height: 110px;
+	height: 130px;
 	border-radius: 26px;
 	margin: 20px auto;
 	padding: 10px;
 }
 
-
+.book-file {
+	margin: 10px;
+}
 
 .user-name-name {
 	font-size: 40px;
