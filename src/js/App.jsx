@@ -88,6 +88,10 @@ class ReduxApp extends React.Component {
 				books={this.props.books}
 				userInfo={this.props.userInfo}
 				setBooks={this.props.setBooks}
+				setNameFilter={this.props.setNameFilter}
+				setCategoryFilter={this.props.setCategoryFilter}
+				nameFilter={this.props.nameFilter}
+				categoryFilter={this.props.categoryFilter}
 			/>
 
 		const renderBar =
@@ -134,7 +138,9 @@ const App = connect(
 		userBar: state.userBar,
 		userInfo: state.userInfo,
 		books: state.booksList,
-		isReq: state.isReq
+		isReq: state.isReq,
+		nameFilter: state.prefs.nameFilter,
+		categoryFilter: state.prefs.categoryFilter
 	}),
 	dispatch => ({
 		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
@@ -151,7 +157,9 @@ const App = connect(
 		setUsercode: usercode => dispatch({ type: 'SET_USERCODE', payload: usercode }),
 		switchBooksPanel: () => dispatch({ type: 'SWITCH_BOOKS_PANEL' }),
 		setBooks: books => dispatch({ type: 'SET_BOOKS', payload: books }),
-		switchReq: () => dispatch({ type: 'SWITCH_REQ' })
+		switchReq: () => dispatch({ type: 'SWITCH_REQ' }),
+		setNameFilter: filter => dispatch({ type: 'SET_NAME_FILTER', payload: filter }),
+		setCategoryFilter: filter => dispatch({ type: 'SET_CATEGORY_FILTER', payload: filter })
 	})
 ) (ReduxApp)
 

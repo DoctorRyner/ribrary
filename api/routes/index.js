@@ -41,7 +41,7 @@ router.post('/upload', (req, res) => {
 							else console.log('Новый книга была добавлен')
 						})
 
-						if(db !== undefined) db.close()
+						if(db) db.close()
 					}
 				})
 				res.send('Done!')
@@ -72,7 +72,7 @@ router.post('/newUser', function(req, res) {
 				else console.log('Новый пользователь был добавлен')
 			})
 
-			if(db !== undefined) db.close()
+			if(db) db.close()
 		}
 	})
 })
@@ -92,7 +92,7 @@ router.post('/removeBook', function(req, res) {
 				else console.log('Книга удалена!')
 			})
 			res.send('success')
-			if(db !== undefined) db.close()
+			if(db) db.close()
 		}
 	})
 })
@@ -104,13 +104,12 @@ router.get('/getBooks', function(req, res) {
 		else {
 			console.log('Подключение установлено')
 			let collection = db.collection('books')
-
 			collection.find({}).toArray((err, result) => {
 				if(err) res.send(err)
 				else if(result.length) res.send(result)
 				else res.send('Документ с книгами не был найден')
 				
-				if(db !== undefined) db.close()
+				if(db) db.close()
 			})
 		}
 	})
@@ -129,7 +128,7 @@ router.get('/users', function(req, res) {
 				else if(result.length) res.send(result)
 				else res.send('Документ с пользователями не был найден')
 
-				if(db != undefined) db.close()
+				if(db) db.close()
 			})
 		}
 	})
