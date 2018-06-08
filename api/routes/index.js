@@ -77,6 +77,26 @@ router.post('/newUser', function(req, res) {
 	})
 })
 
+router.post('/removeBook', function(req, res) {
+	console.log('RECEIVED')
+	// console.log(req.body)
+	let url = 'mongodb://localhost:27017/ribrary'
+	mongoose.connect(url, (err, db) => {
+		if(err) console.log('Ошибка подключения к базе данных', err)
+		else {
+			console.log('Подключение установленно')
+			console.log('Book id: ' + req.body.id)
+			let collection = db.collection('books')
+			collection.remove({ id: req.body.id }, (err, res) => {
+				if(err) console.log(err)
+				else console.log('Книга удалена!')
+			})
+			res.send('success')
+			db.close()
+		}
+	})
+})
+
 router.get('/getBooks', function(req, res) {
 	const url = 'mongodb://localhost:27017/ribrary'
 	mongoose.connect(url, (err, db) => {

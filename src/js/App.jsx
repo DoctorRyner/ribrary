@@ -72,6 +72,8 @@ class ReduxApp extends React.Component {
 			<BooksPanel
 				width={this.state.width}
 				books={this.props.books}
+				userInfo={this.props.userInfo}
+				setBooks={this.props.setBooks}
 			/>
 
 		const renderBar =
@@ -89,6 +91,7 @@ class ReduxApp extends React.Component {
 				changeUsercodeInput={this.props.changeUsercodeInput}
 				switchReq={this.props.switchReq}
 				isReq={this.props.isReq}
+				switchBooksPanel={this.props.switchBooksPanel}
 			/>
 
 		return(
@@ -97,6 +100,7 @@ class ReduxApp extends React.Component {
 					setBooks={this.props.setBooks}
 					switchUserBar={this.props.switchUserBar}
 					switchBooksPanel={this.props.switchBooksPanel}
+					setUsercode={this.props.setUsercode}
 				/>
 				<div id='content'>
 					{this.props.isBooksPanelActive && renderBooksPanel}

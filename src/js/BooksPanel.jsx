@@ -14,7 +14,15 @@ const BooksPanel = props => {
 
 	return(
 		<div style={style} className='BooksPanel'>
-			{props.books.map(book => <Book bookname={book.bookname} category={book.category} id={book.id} key={uuidv1()} />)}
+			{props.books.map(book =>
+				<Book
+					bookname={book.bookname}
+					category={book.category}
+					id={book.id}
+					key={uuidv1()}
+					userInfo={props.userInfo}
+					setBooks={props.setBooks}
+				/>)}
 		</div>
 	)
 }

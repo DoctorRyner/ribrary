@@ -236,6 +236,7 @@ const UserBar = props => {
 				localStorage.setItem('login', undefined)
 				localStorage.setItem('password', undefined)
 				localStorage.setItem('usercode', undefined)
+				props.setUsercode(1111)
 				props.exit()
 			}}>
 				<label className='bookmarks'>Выйти из профиля</label>
