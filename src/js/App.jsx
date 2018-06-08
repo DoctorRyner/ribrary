@@ -92,6 +92,8 @@ class ReduxApp extends React.Component {
 				switchReq={this.props.switchReq}
 				isReq={this.props.isReq}
 				switchBooksPanel={this.props.switchBooksPanel}
+				switchUserBar={this.props.switchUserBar}
+				setBooks={this.props.setBooks}
 			/>
 
 		return(

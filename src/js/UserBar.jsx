@@ -111,15 +111,35 @@ const UserBar = props => {
 	const changeRegPasswordHandle = e => props.changeRegPasswordInput(e.target.value)
 	const changeUsercodeHandle = e => props.changeUsercodeInput(e.target.value)
 
+	const getBooks = () => {
+		let books
+
+		fetch('api/getBooks')
+			.then(res => res.json())
+			.then(data => books = data)
+			.then(() => {
+				books = books.filter(book => book.id != undefined)
+				props.setBooks(books.map(book => book))
+			})
+			.catch(err => console.log(err))
+	}
+
 	let bookName
 	let fileField
 	const upload = () => {
+		props.switchUserBar()
+		alert('Запрос отправлен')
 		if(props.isReq == false) {
 			alert('Книга все еще загружается!' + props.isReq)
 			return
 		} else props.switchReq()
 		if(bookName.value.length < 4) {
 			alert('Имя книги должно содержать не менее 4-ех символов!')
+			props.switchUserBar()
+			return
+		} else if(!fileField.files[0]) {
+			alert('Выберите какую книгу загрузить!')
+			props.switchUserBar()
 			return
 		}
 
@@ -156,6 +176,7 @@ const UserBar = props => {
 			.then(() => {
 				if(!isValid) {
 					alert('Такая книга уже есть!')
+					props.switchUserBar()
 					return
 				}
 		
@@ -172,6 +193,7 @@ const UserBar = props => {
 						alert('Книга успешно добавлена')
 						console.log('Success:', res)
 						props.switchReq()
+						getBooks()
 					});
 			})
 			.catch(err => console.log(err))
