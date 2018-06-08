@@ -16,6 +16,19 @@ console.log(store.getState())
 class ReduxApp extends React.Component {
 	state = { width: this.props.width };
 
+	getBooks = () => {
+		let books
+
+		fetch('api/getBooks')
+			.then(res => res.json())
+			.then(data => books = data)
+			.then(() => {
+				books = books.filter(book => book.id != undefined)
+				this.props.setBooks(books.map(book => book))
+			})
+			.catch(err => console.log(err))
+	}
+
 	login = (username, password) => {
 		let gottenData
 		let isValid = false
@@ -49,6 +62,7 @@ class ReduxApp extends React.Component {
 	}
 
 	componentDidMount() {
+		this.getBooks()
 		window.addEventListener('resize', () => this.setState({ width: window.innerWidth} ));
 		this.setState({ width: window.innerWidth})
 

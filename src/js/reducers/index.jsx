@@ -50,7 +50,7 @@ const userBar = (state = userBarInit, action) => {
 	}
 }
 
-const prefsInit = { isUserBarActive: false, isBooksPanelActive: false, isReq: true}
+const prefsInit = { isUserBarActive: false, isBooksPanelActive: true, isReq: true}
 
 const prefs = (state = prefsInit, action) => {
 	switch (action.type) {
