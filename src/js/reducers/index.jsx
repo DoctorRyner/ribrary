@@ -50,12 +50,13 @@ const userBar = (state = userBarInit, action) => {
 	}
 }
 
-const prefsInit = { isUserBarActive: false, isBooksPanelActive: false }
+const prefsInit = { isUserBarActive: false, isBooksPanelActive: false, isReq: true}
 
 const prefs = (state = prefsInit, action) => {
 	switch (action.type) {
 		case 'SWITCH_USER_BAR': return { ...state, isUserBarActive: !state.isUserBarActive }
 		case 'SWITCH_BOOKS_PANEL': return { ...state, isBooksPanelActive: !state.isBooksPanelActive }
+		case 'SWITCH_REQ': return { ...state, isReq: !state.isReq }
 		default: return state
 	}
 }

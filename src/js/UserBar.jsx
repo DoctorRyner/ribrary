@@ -114,6 +114,10 @@ const UserBar = props => {
 	let bookName
 	let fileField
 	const upload = () => {
+		if(props.isReq == false) {
+			alert('Книга все еще загружается!' + props.isReq)
+			return
+		} else props.switchReq()
 		if(bookName.value.length < 4) {
 			alert('Имя книги должно содержать не менее 4-ех символов!')
 			return
@@ -160,10 +164,14 @@ const UserBar = props => {
 					body: formData
 				})
 					.then(res => res.json())
-					.catch(err => console.error('Error:', err))
+					.catch(err => {
+						console.error('Error:', err)
+						props.switchReq()
+					})
 					.then(res => {
 						alert('Книга успешно добавлена')
 						console.log('Success:', res)
+						props.switchReq()
 					});
 			})
 			.catch(err => console.log(err))

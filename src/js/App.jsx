@@ -87,6 +87,8 @@ class ReduxApp extends React.Component {
 				changeRegUsernameInput={this.props.changeRegUsernameInput}
 				changeRegPasswordInput={this.props.changeRegPasswordInput}
 				changeUsercodeInput={this.props.changeUsercodeInput}
+				switchReq={this.props.switchReq}
+				isReq={this.props.isReq}
 			/>
 
 		return(
@@ -111,7 +113,8 @@ const App = connect(
 		isBooksPanelActive: state.prefs.isBooksPanelActive,
 		userBar: state.userBar,
 		userInfo: state.userInfo,
-		books: state.booksList
+		books: state.booksList,
+		isReq: state.isReq
 	}),
 	dispatch => ({
 		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
@@ -127,7 +130,8 @@ const App = connect(
 		setUsername: username => dispatch({ type: 'SET_USERNAME', payload: username }),
 		setUsercode: usercode => dispatch({ type: 'SET_USERCODE', payload: usercode }),
 		switchBooksPanel: () => dispatch({ type: 'SWITCH_BOOKS_PANEL' }),
-		setBooks: books => dispatch({ type: 'SET_BOOKS', payload: books })
+		setBooks: books => dispatch({ type: 'SET_BOOKS', payload: books }),
+		switchReq: () => dispatch({ type: 'SWITCH_REQ' })
 	})
 ) (ReduxApp)
 
