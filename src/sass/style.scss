@@ -180,6 +180,11 @@ header {
 	}
 }
 
+.sort-title {
+	color: rgb(140, 117, 255);
+	margin-right: 5px;
+}
+
 $barResp: 500px;
 
 @media screen and (min-width: $respWidth) {
@@ -190,7 +195,7 @@ $barResp: 500px;
 		position: fixed;
 		// height: 700px;
 		// max-height: 700px;
-		max-height: 70%;
+		max-height: 65%;
 		overflow: auto; 
 		margin-left: 100px;;
 		// width: 200px;
@@ -449,7 +454,7 @@ $barResp: 500px;
 		position: fixed;
 		// height: 700px;
 		// max-height: 700px;
-		max-height: 75%;
+		max-height: 65%;
 		overflow: auto; 
 		// margin-left: 100px;
 		max-width: 90%;

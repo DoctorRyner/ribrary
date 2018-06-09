@@ -8,8 +8,13 @@ const BooksPanel = props => {
 	let searchCategory
 
 	const search = () => {
-		props.setNameFilter(searchName.value)
-		props.setCategoryFilter(searchCategory.value)
+		searchName.value == 'По имени книги' ?
+			props.setNameFilter('') :
+			props.setNameFilter(searchName.value)
+
+		searchCategory.value == 'По категориям' ?
+			props.setCategoryFilter('') :
+			props.setCategoryFilter(searchCategory.value)
 	}
 
 	let width = props.width > 1920 ? 1420 : props.width - 500
@@ -24,6 +29,8 @@ const BooksPanel = props => {
 	let renderBooks = props.books.filter(book => book.bookname.toLowerCase().includes(nameFilterLower))
 
 	renderBooks = renderBooks.filter(book => book.category.toLowerCase().includes(categoryFilterLower))
+
+	renderBooks = props.isNewFirst ? renderBooks.reverse() : renderBooks
 	
 	renderBooks = renderBooks.map(book =>
 		<Book
@@ -41,7 +48,10 @@ const BooksPanel = props => {
 			<div className='searchBooks'>
 				<input ref={searchNameField =>  searchName = searchNameField} defaultValue='По имени книги' type="text"/>
 				<input ref={searchCategoryField =>  searchCategory = searchCategoryField} defaultValue='По категориям' type="text"/>
-				<button onClick={search}>Нажмите для поиска!</button>
+				<button type='submit' onClick={search}>Нажмите для поиска!</button>
+				<br />
+				<label className='sort-title'>Сначала новые</label>
+				<input onChange={props.switchSort} defaultChecked={props.isNewFirst} type="checkbox"/>
 			</div>
 			{renderBooks}
 		</div>

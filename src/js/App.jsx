@@ -92,6 +92,8 @@ class ReduxApp extends React.Component {
 				setCategoryFilter={this.props.setCategoryFilter}
 				nameFilter={this.props.nameFilter}
 				categoryFilter={this.props.categoryFilter}
+				isNewFirst={this.props.isNewFirst}
+				switchSort={this.props.switchSort}
 			/>
 
 		const renderBar =
@@ -140,7 +142,8 @@ const App = connect(
 		books: state.booksList,
 		isReq: state.isReq,
 		nameFilter: state.prefs.nameFilter,
-		categoryFilter: state.prefs.categoryFilter
+		categoryFilter: state.prefs.categoryFilter,
+		isNewFirst: state.prefs.isNewFirst
 	}),
 	dispatch => ({
 		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
@@ -159,7 +162,8 @@ const App = connect(
 		setBooks: books => dispatch({ type: 'SET_BOOKS', payload: books }),
 		switchReq: () => dispatch({ type: 'SWITCH_REQ' }),
 		setNameFilter: filter => dispatch({ type: 'SET_NAME_FILTER', payload: filter }),
-		setCategoryFilter: filter => dispatch({ type: 'SET_CATEGORY_FILTER', payload: filter })
+		setCategoryFilter: filter => dispatch({ type: 'SET_CATEGORY_FILTER', payload: filter }),
+		switchSort: () => dispatch({ type: 'SWITCH_SORT' })
 	})
 ) (ReduxApp)
 
