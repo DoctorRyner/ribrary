@@ -18,6 +18,15 @@ $listIconMarginRight: 30px;
 $searchIconMarginLeft: 45px;
 $respWidth: 700px;
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 * {
 	margin: 0;
 	padding: 0;
