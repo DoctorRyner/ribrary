@@ -19,8 +19,8 @@ const BooksPanel = props => {
 	const style = {
 		width: width + 'px'
 	}
-	const nameFilterLower = props.nameFilter.toLowerCase()
-	const categoryFilterLower = props.categoryFilter.toLowerCase()
+	const nameFilterLower = props.nameFilter.toLowerCase().split(' ').join('_')
+	const categoryFilterLower = props.categoryFilter.toLowerCase().split(' ').join('_')
 	let renderBooks = props.books.filter(book => book.bookname.toLowerCase().includes(nameFilterLower))
 
 	renderBooks = renderBooks.filter(book => book.category.toLowerCase().includes(categoryFilterLower))

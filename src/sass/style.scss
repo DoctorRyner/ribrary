@@ -16,6 +16,7 @@ $headerColor: rgba(160, 141, 255, $headerOpacity);
 $homeIconMarginRight: 50px;
 $listIconMarginRight: 30px;
 $searchIconMarginLeft: 45px;
+$respWidth: 700px;
 
 * {
 	margin: 0;
@@ -49,20 +50,61 @@ header {
 	margin-left: auto;
 }
 
-#home-icon {
-	margin-top: 10px;
-	margin-right: $homeIconMarginRight;
-	width: 100px;
-	height: 80px;
-	opacity: 0.4;
-	transition: margin-right, opacity, $iconAnimationSpeed;
+@media screen and (min-width: $respWidth) {
+
+	#home-icon {
+		margin-top: 10px;
+		margin-right: $homeIconMarginRight;
+		width: 100px;
+		height: 80px;
+		opacity: 0.4;
+		transition: margin-right, opacity, $iconAnimationSpeed;
+	}
+
+	#home-icon:hover {
+		margin-right: $homeIconMarginRight + $iconAnimationOffset;
+		width: 130px;
+		height: 100px;
+		opacity: 1;
+	}
+
+	#logo-icon {
+		margin-top: 10px;
+		margin-left: $searchIconMarginLeft;
+		width: 200px;
+		height: 80px;
+		opacity: 0.4;
+		transition: margin-left, width, height, opacity, $iconAnimationSpeed;
+	}
+	
+	#logo-icon:hover {
+		margin-left: $searchIconMarginLeft + $iconAnimationOffset;
+		opacity: 1;
+		width: 240px;
+		height: 100px;
+	}
+
 }
 
-#home-icon:hover {
-	margin-right: $homeIconMarginRight + $iconAnimationOffset;
-	width: 130px;
-	height: 100px;
-	opacity: 1;
+@media not screen and (min-width: $respWidth) {
+
+	#logo-icon {
+		display: none;
+	}
+
+	#home-icon {
+		margin-top: 10px;
+		margin-right: 10px;
+		width: 100px;
+		height: 80px;
+		opacity: 0.4;
+		transition: opacity, $iconAnimationSpeed;
+	}
+
+	#home-icon:hover {
+		opacity: 1;
+	}
+
 }
 
 #list-icon {
@@ -85,22 +127,6 @@ header {
 	margin-right: auto;
 }
 
-#logo-icon {
-	margin-top: 10px;
-	margin-left: $searchIconMarginLeft;
-	width: 200px;
-	height: 80px;
-	opacity: 0.4;
-	transition: margin-left, width, height, opacity, $iconAnimationSpeed;
-}
-
-#logo-icon:hover {
-	margin-left: $searchIconMarginLeft + $iconAnimationOffset;
-	opacity: 1;
-	width: 240px;
-	height: 100px;
-}
-
 #content {
 	margin-top: 130px;
 	margin-left: 20px;
@@ -117,272 +143,391 @@ header {
 	}
 }
 
-.UserBar {
-	animation: 0.5s ease-out 0s 1 slideInFromLeft;
-	position: fixed;
-	height: 700px;
-	width: 700px;
-	border-radius: 26px;
-	// top: 140;
-	padding: 2em;
-	left: 70%;
-	// top: 0%;
-	right: 0;
-	transform: translateX(-30%);
-	background: rgba(160, 141, 255, 0.9);
-	z-index: 1;
-	margin: 0 auto;
+@media screen and (min-width: 1000px) {
+	.UserBar {
+		animation: 0.5s ease-out 0s 1 slideInFromLeft;
+		position: fixed;
+		height: 700px;
+		width: 700px;
+		border-radius: 26px;
+		// top: 140;
+		padding: 2em;
+		left: 70%;
+		// top: 0%;
+		right: 0;
+		transform: translateX(-40%);
+		background: rgba(160, 141, 255, 0.9);
+		z-index: 1;
+		margin: 0 auto;
+	}
 }
 
-.BooksPanel {
-	overflow: scroll;
-	background: $booksPanelColor;
-	animation: 0.5s ease-out 0s 1 slideInFromLeft;
-	position: fixed;
-	height: 700px;
-	max-height: 700px;
-	margin-left: 100px;;
-	// width: 200px;
-	// left: 13%;
-	border-radius: 26px;
+@media not screen and (min-width: 1000px) {
+	.UserBar {
+		animation: 0.5s ease-out 0s 1 slideInFromLeft;
+		position: fixed;
+		// height: 700px;
+		max-height: 60%;
+		overflow: auto; 
+		// width: 700px;
+		width: 90%;
+		border-radius: 26px;
+		// top: 140;
+		padding: 1em;
+		background: rgba(160, 141, 255, 0.9);
+		z-index: 1;
+	}
 }
 
-.UserBar > .user-row {
-	background: rgba(171, 167, 255, 0.9);
-	width: 97%;
-	height: 100px;
-	border-radius: 26px;
-	margin: 20px auto;
-	padding: 5px;
+@media screen and (min-width: $respWidth) {
+	.BooksPanel {
+		// overflow: scroll;
+		background: $booksPanelColor;
+		animation: 0.5s ease-out 0s 1 slideInFromLeft;
+		position: fixed;
+		// height: 700px;
+		// max-height: 700px;
+		max-height: 70%;
+		overflow: auto; 
+		margin-left: 100px;;
+		// width: 200px;
+		// left: 13%;
+		border-radius: 26px;
+	}
+
+	// USERBAR ELS
+
+	.login-container {
+		margin-left: 50px;
+		height: 200px;
+		width: 600px;
+		margin-top: 10px;
+	}
+	
+	.login {
+		height: 40px;
+		width: 36%;
+		margin-left: 20px;
+		background: #A89DFF;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		text-align: center;
+		font-size: 20px;
+		color: rgb(112, 68, 255);
+	}
+	
+	.book-input {
+		height: 40px;
+		width: 36%;
+		margin-left: 20px;
+		margin-right: 20px;
+		background: #A89DFF;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		text-align: center;
+		font-size: 20px;
+		color: rgb(112, 68, 255);
+	}
+	
+	.password {
+		color: rgb(112, 68, 255);
+		text-align: center;
+		font-size: 20px;
+		-webkit-text-security: disc;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 40px;
+		width: 36%;
+		margin-left: 100px;
+	}
+	
+	.user-code {
+		color: rgb(112, 68, 255);
+		text-align: center;
+		font-size: 20px;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 40px;
+		width: 36%;
+		margin-top: 25px;
+		margin-left: 180px;
+	}
+	
+	.UserBar > .register-row {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 175px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 5px;
+	}
+	
+	.register-title {
+		padding: 5px;
+		font-size: 30px;
+		width: 200px;
+		text-align: center;
+		border-radius: 26px;
+		margin-left: 250px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+	}
+	
+	.register-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+	
+	.UserBar > .user-name {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 50px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 10px;
+	}
+	
+	.UserBar > .book-filed {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 130px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 10px;
+	}
+	
+	.book-file {
+		margin: 10px;
+	}
+	
+	.user-name-name {
+		font-size: 40px;
+		width: 100px;
+		margin-top: 50px;
+		margin-left: 180px;
+		margin-right: 40px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+	
+	.user-name-last {
+		font-size: 40px;
+		width: 100px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+	
+	.bookmarks {
+		font-size: 40px;
+		width: 100px;
+		margin-top: 50px;
+		margin-left: 180px;
+		margin-right: 40px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+
+	.UserBar > .user-row {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 100px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 5px;
+	}
+	
+	.login-title {
+		font-size: 30px;
+		width: 100px;
+		margin-top: 5px;
+		margin-left: 280px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+		border-radius: 26px;
+		text-align: center;
+	}
+	
+	.login-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+	
+	.book-title {
+		font-size: 30px;
+		width: 300px;
+		margin-top: 5px;
+		margin-left: 148px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+		border-radius: 26px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	// BOOKS PANEL
+	.book-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+	
+	// Books
+	.book {
+		display: flex;
+		color: rgb(112, 68, 255);
+		font-size: 20px;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 100px;
+		width: 90%;
+		margin: 20px auto;
+		padding-top: 11px;
+		overflow: scroll;
+		// align-content: flex-end;
+		// justify-content: flex-end;
+	}
+	
+	.bookname {
+		flex: 1;
+		overflow: scroll;
+		white-space: nowrap;
+		width: 200px;
+		height: 90px;
+		line-height: 90px;
+		margin-left: 10px;
+		padding-left: 20px;
+		color: rgb(147, 115, 255);
+		border-radius: 26px;
+		// text-align: center;
+		// text-justify: center;
+		justify-self: flex-start;
+		background-color: $bgColor2;
+	}
+	
+	.category {
+		flex: 1;
+		overflow: scroll;
+		white-space: nowrap;
+		width: 200px;
+		justify-self: flex-start;
+		height: 90px;
+		line-height: 90px;
+		margin-left: 10px;
+		padding-left: 20px;
+		background-color: $bgColor2;
+		border-radius: 26px;
+		color: rgb(147, 115, 255);
+	}
+	
+	.link {
+		flex: 0.5;
+		overflow: scroll;
+		white-space: nowrap;
+		justify-items: flex-end;
+		width: 200px;
+		height: 90px;
+		line-height: 90px;
+		margin-left: 10px;
+		color: rgb(147, 115, 255);
+		border-radius: 26px;
+		text-align: center;
+		text-justify: center;
+		background-color: $bgColor2;
+	}
+	
+	.searchBooks {
+		margin-left: 20px;
+	}
 }
 
-.login-title {
-	font-size: 30px;
-	width: 100px;
-	margin-top: 5px;
-	margin-left: 280px;
-	color: rgb(147, 115, 255);
-	transition: background-color, 0.5s;
-	border-radius: 26px;
-	text-align: center;
-}
+@media not screen and (min-width: $respWidth) {
+	.BooksPanel {
+		// overflow: scroll;
+		background: $booksPanelColor;
+		animation: 0.5s ease-out 0s 1 slideInFromLeft;
+		position: fixed;
+		// height: 700px;
+		// max-height: 700px;
+		max-height: 75%;
+		overflow: auto; 
+		// margin-left: 100px;
+		max-width: 90%;
+		// left: 13%;
+		border-radius: 26px;
+	}	
 
-.login-title:hover {
-	background-color: rgba(160, 141, 255, 1);
-}
+	// BOOKS PANEL
 
-.book-title {
-	font-size: 30px;
-	width: 300px;
-	margin-top: 5px;
-	margin-left: 148px;
-	color: rgb(147, 115, 255);
-	transition: background-color, 0.5s;
-	border-radius: 26px;
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.book-title:hover {
-	background-color: rgba(160, 141, 255, 1);
-}
-
-.login-container {
-	margin-left: 50px;
-	height: 200px;
-	width: 600px;
-	margin-top: 10px;
-}
-
-.login {
-	height: 40px;
-	width: 36%;
-	margin-left: 20px;
-	background: #A89DFF;
-	border: 2px rgb(159, 130, 255) solid;
-	border-radius: 26px;
-	text-align: center;
-	font-size: 20px;
-	color: rgb(112, 68, 255);
-}
-
-.book-input {
-	height: 40px;
-	width: 36%;
-	margin-left: 20px;
-	margin-right: 20px;
-	background: #A89DFF;
-	border: 2px rgb(159, 130, 255) solid;
-	border-radius: 26px;
-	text-align: center;
-	font-size: 20px;
-	color: rgb(112, 68, 255);
-}
-
-.password {
-	color: rgb(112, 68, 255);
-	text-align: center;
-	font-size: 20px;
-	-webkit-text-security: disc;
-	border: 2px rgb(159, 130, 255) solid;
-	border-radius: 26px;
-	background: #A89DFF;
-	height: 40px;
-	width: 36%;
-	margin-left: 100px;
-}
-
-.user-code {
-	color: rgb(112, 68, 255);
-	text-align: center;
-	font-size: 20px;
-	border: 2px rgb(159, 130, 255) solid;
-	border-radius: 26px;
-	background: #A89DFF;
-	height: 40px;
-	width: 36%;
-	margin-top: 25px;
-	margin-left: 180px;
-}
-
-.UserBar > .register-row {
-	background: rgba(171, 167, 255, 0.9);
-	width: 97%;
-	height: 175px;
-	border-radius: 26px;
-	margin: 20px auto;
-	padding: 5px;
-}
-
-.register-title {
-	padding: 5px;
-	font-size: 30px;
-	width: 200px;
-	text-align: center;
-	border-radius: 26px;
-	margin-left: 250px;
-	color: rgb(147, 115, 255);
-	transition: background-color, 0.5s;
-}
-
-.register-title:hover {
-	background-color: rgba(160, 141, 255, 1);
-}
-
-.UserBar > .user-name {
-	background: rgba(171, 167, 255, 0.9);
-	width: 97%;
-	height: 50px;
-	border-radius: 26px;
-	margin: 20px auto;
-	padding: 10px;
-}
-
-.UserBar > .book-filed {
-	background: rgba(171, 167, 255, 0.9);
-	width: 97%;
-	height: 130px;
-	border-radius: 26px;
-	margin: 20px auto;
-	padding: 10px;
-}
-
-.book-file {
-	margin: 10px;
-}
-
-.user-name-name {
-	font-size: 40px;
-	width: 100px;
-	margin-top: 50px;
-	margin-left: 180px;
-	margin-right: 40px;
-	color: rgb(147, 115, 255);
-	text-align: center;
-}
-
-.user-name-last {
-	font-size: 40px;
-	width: 100px;
-	color: rgb(147, 115, 255);
-	text-align: center;
-}
-
-.bookmarks {
-	font-size: 40px;
-	width: 100px;
-	margin-top: 50px;
-	margin-left: 180px;
-	margin-right: 40px;
-	color: rgb(147, 115, 255);
-	text-align: center;
-}
-
-// Books
-.book {
-	display: flex;
-	color: rgb(112, 68, 255);
-	font-size: 20px;
-	border: 2px rgb(159, 130, 255) solid;
-	border-radius: 26px;
-	background: #A89DFF;
-	height: 100px;
-	width: 90%;
-	margin: 20px auto;
-	padding-top: 11px;
-	overflow: scroll;
-	// align-content: flex-end;
-	// justify-content: flex-end;
-}
-
-.bookname {
-	flex: 1;
-	overflow: scroll;
-	white-space: nowrap;
-	width: 200px;
-	height: 90px;
-	line-height: 90px;
-	margin-left: 10px;
-	padding-left: 20px;
-	color: rgb(147, 115, 255);
-	border-radius: 26px;
-	// text-align: center;
-	// text-justify: center;
-	justify-self: flex-start;
-	background-color: $bgColor2;
-}
-
-.category {
-	flex: 1;
-	overflow: scroll;
-	white-space: nowrap;
-	width: 200px;
-	justify-self: flex-start;
-	height: 90px;
-	line-height: 90px;
-	margin-left: 10px;
-	padding-left: 20px;
-	background-color: $bgColor2;
-	border-radius: 26px;
-	color: rgb(147, 115, 255);
-}
-
-.link {
-	flex: 0.5;
-	overflow: scroll;
-	white-space: nowrap;
-	justify-items: flex-end;
-	width: 200px;
-	height: 90px;
-	line-height: 90px;
-	margin-left: 10px;
-	color: rgb(147, 115, 255);
-	border-radius: 26px;
-	text-align: center;
-	text-justify: center;
-	background-color: $bgColor2;
-}
-
-.searchBooks {
-	margin-left: 20px;
+	.book-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+	
+	// Books
+	.book {
+		display: flex;
+		color: rgb(112, 68, 255);
+		font-size: 10px;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 50px;
+		width: 90%;
+		margin: 10px auto;
+		padding-top: 6px;
+		overflow: scroll;
+		// align-content: flex-end;
+		// justify-content: flex-end;
+	}
+	
+	.bookname {
+		flex: 1;
+		overflow: scroll;
+		white-space: nowrap;
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		margin-left: 5px;
+		margin-top: -3px;
+		color: rgb(147, 115, 255);
+		border-radius: 26px;
+		// text-align: center;
+		// text-justify: center;
+		justify-self: flex-start;
+		background-color: $bgColor2;
+	}
+	
+	.category {
+		flex: 1;
+		overflow: scroll;
+		white-space: nowrap;
+		width: 200px;
+		justify-self: flex-start;
+		height: 50px;
+		line-height: 50px;
+		margin-left: 5px;
+		margin-top: -3px;
+		background-color: $bgColor2;
+		border-radius: 26px;
+		color: rgb(147, 115, 255);
+	}
+	
+	.link {
+		flex: 0.5;
+		overflow: scroll;
+		white-space: nowrap;
+		justify-items: flex-end;
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		margin-left: 5px;
+		margin-top: -3px;
+		margin-right: 4px;
+		color: rgb(147, 115, 255);
+		border-radius: 26px;
+		text-align: center;
+		text-justify: center;
+		background-color: $bgColor2;
+	}
+	
+	.searchBooks {
+		margin-left: 20px;
+	}
 }
