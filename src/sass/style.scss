@@ -147,7 +147,8 @@ header {
 	.UserBar {
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
-		height: 700px;
+		max-height: 60%;
+		overflow: auto;
 		width: 700px;
 		border-radius: 26px;
 		// top: 140;
@@ -167,7 +168,7 @@ header {
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
 		// height: 700px;
-		max-height: 60%;
+		max-height: 70%;
 		overflow: auto; 
 		// width: 700px;
 		width: 90%;
@@ -178,6 +179,8 @@ header {
 		z-index: 1;
 	}
 }
+
+$barResp: 500px;
 
 @media screen and (min-width: $respWidth) {
 	.BooksPanel {
@@ -456,6 +459,169 @@ header {
 
 	// BOOKS PANEL
 
+
+	.login-container {
+		height: 200px;
+		width: 100%;
+	}
+	
+	.login {
+		height: 40px;
+		width: 36%;
+		background: #A89DFF;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		text-align: center;
+		font-size: 20px;
+		color: rgb(112, 68, 255);
+	}
+	
+	.book-input {
+		height: 40px;
+		width: 80%;
+		margin-left: 20px;
+		margin-right: 20px;
+		background: #A89DFF;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		text-align: center;
+		font-size: 20px;
+		color: rgb(112, 68, 255);
+	}
+	
+	.password {
+		color: rgb(112, 68, 255);
+		text-align: center;
+		font-size: 20px;
+		-webkit-text-security: disc;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 40px;
+		width: 36%;
+		margin-left: 20px;
+	}
+	
+	.user-code {
+		color: rgb(112, 68, 255);
+		text-align: center;
+		font-size: 20px;
+		border: 2px rgb(159, 130, 255) solid;
+		border-radius: 26px;
+		background: #A89DFF;
+		height: 40px;
+		width: 36%;
+		margin-top: 25px;
+	}
+	
+	.UserBar > .register-row {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 175px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 5px;
+	}
+	
+	.register-title {
+		padding: 5px;
+		font-size: 20px;
+		width: 200px;
+		text-align: center;
+		border-radius: 26px;
+		margin-left: 50px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+	}
+	
+	.register-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+	
+	.UserBar > .user-name {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 50px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 10px;
+	}
+	
+	.UserBar > .book-filed {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 130px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding-bottom: 50px;
+	}
+	
+	.book-file {
+		margin: 10px;
+	}
+	
+	.user-name-name {
+		font-size: 20px;
+		width: 100px;
+		margin-top: 50px;
+		// margin-left: 180px;
+		margin-right: 40px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+	
+	.user-name-last {
+		font-size: 20px;
+		width: 100px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+	
+	.bookmarks {
+		font-size: 20px;
+		width: 100px;
+		margin-top: 50px;
+		// margin-left: 180px;
+		margin-right: 40px;
+		color: rgb(147, 115, 255);
+		text-align: center;
+	}
+
+	.UserBar > .user-row {
+		background: rgba(171, 167, 255, 0.9);
+		width: 97%;
+		height: 100px;
+		border-radius: 26px;
+		margin: 20px auto;
+		padding: 5px;
+	}
+	
+	.login-title {
+		font-size: 20px;
+		width: 100px;
+		margin-top: 5px;
+		margin-left: 70px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+		border-radius: 26px;
+		text-align: center;
+	}
+	
+	.login-title:hover {
+		background-color: rgba(160, 141, 255, 1);
+	}
+
+	.book-title {
+		font-size: 30px;
+		width: 300px;
+		margin-top: 5px;
+		color: rgb(147, 115, 255);
+		transition: background-color, 0.5s;
+		border-radius: 26px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	// BOOKS PANEL
 	.book-title:hover {
 		background-color: rgba(160, 141, 255, 1);
 	}
