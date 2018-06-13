@@ -4,7 +4,7 @@ const browserify = require('browserify')
 const glob = require('glob').sync
 const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
-// const uglify = require('gulp-uglify')
+const uglify = require('gulp-uglify')
 const server = require('gulp-webserver')
 
 gulp.task('html', () => {
@@ -27,7 +27,7 @@ gulp.task('js', () => {
 		.bundle().on('error', (err) => console.log(err.stack))
 		.pipe(source('app.js'))
 		.pipe(buffer())
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest('build'))
 })
 

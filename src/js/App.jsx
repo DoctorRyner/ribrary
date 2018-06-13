@@ -7,7 +7,6 @@ import reducer from './reducers/index.jsx'
 import Header from './Header.jsx'
 import UserBar from './UserBar.jsx';
 import BooksPanel from './BooksPanel.jsx'
-import Book from './Book.jsx'
 
 const store = createStore(reducer)
 store.subscribe(() => console.log(store.getState()))
@@ -146,8 +145,6 @@ const App = connect(
 		isNewFirst: state.prefs.isNewFirst
 	}),
 	dispatch => ({
-		// addCounter: () => { dispatch({ type: 'ADD_COUNTER' }) }, 
-		// inc: id => { dispatch({ type: 'INC', payload: id }) },
 		switchUserBar: () => dispatch({ type: 'SWITCH_USER_BAR' }),
 		login: (username, password) => dispatch({ type: 'LOGIN', payload: { username, password } }),
 		exit: () => dispatch({ type: 'EXIT' }),

@@ -19,7 +19,6 @@ const Header = props => {
 		<header>
 			<div id='left-container'><img id='logo-icon' src='img/logo-icon.png' alt=""/></div>
 			<div id='right-container'>
-				{/* <img onClick={getBooks} id='list-icon' src='img/list-icon.png' alt=""/> */}
 				<img onClick={props.switchUserBar} id='home-icon' src='img/home-icon.png' alt=""/>
 			</div>
 		</header>
@@ -27,3 +26,4 @@ const Header = props => {
 }
 
 export default Header
+

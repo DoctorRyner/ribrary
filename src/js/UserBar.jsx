@@ -255,9 +255,6 @@ const UserBar = props => {
 			<div className='user-name'>
 				<label className='user-name-name'>Имя: {props.userInfo.username}</label>
 			</div>
-			{/* <div className='user-name'>
-				<label className='bookmarks'>Открыть закладки</label>
-			</div> */}
 			<div className='user-name'>
 				<label className='bookmarks'>Статус: {userPower}</label>
 			</div>

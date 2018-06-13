@@ -1,6 +1,13 @@
-$bgColor1: #AADCFF;
-$bgColor2: #ABA7FF;
-$bgColor3: #A89DFF;
+// $bgColor1: #AADCFF;
+// $bgColor2: #ABA7FF;
+// $bgColor3: #A89DFF;
+$bgColor1: rgb(92, 172, 172);
+$bgColor2: rgb(92, 172, 172);
+$bgColor3: rgb(92, 172, 172);
+
+$markContainer: rgb(70, 155, 156);
+$booksLineColor: rgb(127, 202, 192);
+
 $booksPanelColor: rgba(255, 255, 255, 0.2);
 $gradientAngle: 225deg;
 $headerGradientAngle: 90deg;
@@ -8,8 +15,15 @@ $maxWidth: 1920px;
 $iconAnimationOffset: 15px;
 $iconAnimationSpeed: 0.5s;
 
+$userBarColor1: #e4e2e2;
+$userBarColor2: #b3b3b3;
+$userBarColor3: #8a8a8a;
+$userBarColor4: #494949;
+
+$fontColor: rgb(0, 0, 0);
+
 $headerHeight: 100px;
-$headerBorderColor: #A08DFF;
+$headerBorderColor: rgb(149, 144, 175);
 $headerOpacity: 0.984;
 $headerColor: rgba(160, 141, 255, $headerOpacity);
 
@@ -17,14 +31,15 @@ $homeIconMarginRight: 50px;
 $listIconMarginRight: 30px;
 $searchIconMarginLeft: 45px;
 $respWidth: 700px;
+$respWidthMiddleLevel: 1000px;
 
 html {
     overflow: scroll;
     overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+    width: 0px;
+    background: transparent;
 }
 
 * {
@@ -47,7 +62,7 @@ header {
 	top: 0;
 	background-color: $headerColor;
 	z-index: 1;
-	border-bottom: 3px #9782ff solid;
+	border-bottom: 3px #909090 solid;
 	min-height: $headerHeight;
 	width: 100%;
 	display: flex;
@@ -152,7 +167,7 @@ header {
 	}
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: $respWidthMiddleLevel) {
 	.UserBar {
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
@@ -160,10 +175,8 @@ header {
 		overflow: auto;
 		width: 700px;
 		border-radius: 26px;
-		// top: 140;
 		padding: 2em;
 		left: 70%;
-		// top: 0%;
 		right: 0;
 		transform: translateX(-40%);
 		background: rgba(160, 141, 255, 0.9);
@@ -172,17 +185,14 @@ header {
 	}
 }
 
-@media not screen and (min-width: 1000px) {
+@media not screen and (min-width: $respWidthMiddleLevel) {
 	.UserBar {
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
-		// height: 700px;
 		max-height: 70%;
 		overflow: auto; 
-		// width: 700px;
 		width: 90%;
 		border-radius: 26px;
-		// top: 140;
 		padding: 1em;
 		background: rgba(160, 141, 255, 0.9);
 		z-index: 1;
@@ -190,7 +200,7 @@ header {
 }
 
 .sort-title {
-	color: rgb(140, 117, 255);
+	color: $fontColor;
 	margin-right: 5px;
 }
 
@@ -198,17 +208,12 @@ $barResp: 500px;
 
 @media screen and (min-width: $respWidth) {
 	.BooksPanel {
-		// overflow: scroll;
 		background: $booksPanelColor;
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
-		// height: 700px;
-		// max-height: 700px;
 		max-height: 65%;
 		overflow: auto; 
 		margin-left: 100px;;
-		// width: 200px;
-		// left: 13%;
 		border-radius: 26px;
 	}
 
@@ -226,11 +231,11 @@ $barResp: 500px;
 		width: 36%;
 		margin-left: 20px;
 		background: #A89DFF;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		text-align: center;
 		font-size: 20px;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 	}
 	
 	.book-input {
@@ -239,19 +244,19 @@ $barResp: 500px;
 		margin-left: 20px;
 		margin-right: 20px;
 		background: #A89DFF;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		text-align: center;
 		font-size: 20px;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 	}
 	
 	.password {
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		text-align: center;
 		font-size: 20px;
 		-webkit-text-security: disc;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		background: #A89DFF;
 		height: 40px;
@@ -260,10 +265,10 @@ $barResp: 500px;
 	}
 	
 	.user-code {
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		text-align: center;
 		font-size: 20px;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		background: #A89DFF;
 		height: 40px;
@@ -288,7 +293,7 @@ $barResp: 500px;
 		text-align: center;
 		border-radius: 26px;
 		margin-left: 250px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 	}
 	
@@ -324,14 +329,14 @@ $barResp: 500px;
 		margin-top: 50px;
 		margin-left: 180px;
 		margin-right: 40px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 	
 	.user-name-last {
 		font-size: 40px;
 		width: 100px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 	
@@ -341,7 +346,7 @@ $barResp: 500px;
 		margin-top: 50px;
 		margin-left: 180px;
 		margin-right: 40px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 
@@ -359,7 +364,7 @@ $barResp: 500px;
 		width: 100px;
 		margin-top: 5px;
 		margin-left: 280px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 		border-radius: 26px;
 		text-align: center;
@@ -374,7 +379,7 @@ $barResp: 500px;
 		width: 300px;
 		margin-top: 5px;
 		margin-left: 148px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 		border-radius: 26px;
 		text-align: center;
@@ -388,11 +393,11 @@ $barResp: 500px;
 	// Books
 	.book {
 		display: flex;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		font-size: 20px;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
-		background: #A89DFF;
+		background: $booksLineColor;
 		height: 100px;
 		width: 90%;
 		margin: 20px auto;
@@ -411,12 +416,12 @@ $barResp: 500px;
 		line-height: 90px;
 		margin-left: 10px;
 		padding-left: 20px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		border-radius: 26px;
 		// text-align: center;
 		// text-justify: center;
 		justify-self: flex-start;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 	}
 	
 	.category {
@@ -429,9 +434,9 @@ $barResp: 500px;
 		line-height: 90px;
 		margin-left: 10px;
 		padding-left: 20px;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 		border-radius: 26px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 	}
 	
 	.link {
@@ -443,11 +448,11 @@ $barResp: 500px;
 		height: 90px;
 		line-height: 90px;
 		margin-left: 10px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		border-radius: 26px;
 		text-align: center;
 		text-justify: center;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 	}
 	
 	.searchBooks {
@@ -457,17 +462,12 @@ $barResp: 500px;
 
 @media not screen and (min-width: $respWidth) {
 	.BooksPanel {
-		// overflow: scroll;
 		background: $booksPanelColor;
 		animation: 0.5s ease-out 0s 1 slideInFromLeft;
 		position: fixed;
-		// height: 700px;
-		// max-height: 700px;
 		max-height: 65%;
 		overflow: auto; 
-		// margin-left: 100px;
 		max-width: 90%;
-		// left: 13%;
 		border-radius: 26px;
 	}	
 
@@ -483,11 +483,11 @@ $barResp: 500px;
 		height: 40px;
 		width: 36%;
 		background: #A89DFF;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		text-align: center;
 		font-size: 20px;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 	}
 	
 	.book-input {
@@ -496,19 +496,19 @@ $barResp: 500px;
 		margin-left: 20px;
 		margin-right: 20px;
 		background: #A89DFF;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		text-align: center;
 		font-size: 20px;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 	}
 	
 	.password {
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		text-align: center;
 		font-size: 20px;
 		-webkit-text-security: disc;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		background: #A89DFF;
 		height: 40px;
@@ -517,10 +517,10 @@ $barResp: 500px;
 	}
 	
 	.user-code {
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		text-align: center;
 		font-size: 20px;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
 		background: #A89DFF;
 		height: 40px;
@@ -544,7 +544,7 @@ $barResp: 500px;
 		text-align: center;
 		border-radius: 26px;
 		margin-left: 50px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 	}
 	
@@ -580,14 +580,14 @@ $barResp: 500px;
 		margin-top: 50px;
 		// margin-left: 180px;
 		margin-right: 40px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 	
 	.user-name-last {
 		font-size: 20px;
 		width: 100px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 	
@@ -597,7 +597,7 @@ $barResp: 500px;
 		margin-top: 50px;
 		// margin-left: 180px;
 		margin-right: 40px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		text-align: center;
 	}
 
@@ -615,7 +615,7 @@ $barResp: 500px;
 		width: 100px;
 		margin-top: 5px;
 		margin-left: 70px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 		border-radius: 26px;
 		text-align: center;
@@ -629,7 +629,7 @@ $barResp: 500px;
 		font-size: 30px;
 		width: 300px;
 		margin-top: 5px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		transition: background-color, 0.5s;
 		border-radius: 26px;
 		text-align: center;
@@ -643,11 +643,11 @@ $barResp: 500px;
 	// Books
 	.book {
 		display: flex;
-		color: rgb(112, 68, 255);
+		color: $fontColor;
 		font-size: 10px;
-		border: 2px rgb(159, 130, 255) solid;
+		border: 2px #909090 solid;
 		border-radius: 26px;
-		background: #A89DFF;
+		background: $booksLineColor;
 		height: 50px;
 		width: 90%;
 		margin: 10px auto;
@@ -666,12 +666,12 @@ $barResp: 500px;
 		line-height: 50px;
 		margin-left: 5px;
 		margin-top: -3px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		border-radius: 26px;
 		// text-align: center;
 		// text-justify: center;
 		justify-self: flex-start;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 	}
 	
 	.category {
@@ -684,9 +684,9 @@ $barResp: 500px;
 		line-height: 50px;
 		margin-left: 5px;
 		margin-top: -3px;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 		border-radius: 26px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 	}
 	
 	.link {
@@ -700,11 +700,11 @@ $barResp: 500px;
 		margin-left: 5px;
 		margin-top: -3px;
 		margin-right: 4px;
-		color: rgb(147, 115, 255);
+		color: $fontColor;
 		border-radius: 26px;
 		text-align: center;
 		text-justify: center;
-		background-color: $bgColor2;
+		background-color: $markContainer;
 	}
 	
 	.searchBooks {
